@@ -1,6 +1,9 @@
 import logging
 
+import ZODB
+import ZODB.FileStorage
 import flet as ft
+import transaction
 
 
 class Application:
@@ -11,10 +14,20 @@ class Application:
         self._width = width
         self._height = height
 
+        self._db = ZODB.DB(None)
+        connection = self._db.open()
+        root = connection.root
+        root.string = "Hello my World!"
+        transaction.commit()
+        connection.close()
+
     def main(self, page: ft.Page):
         self._initialize_page(page)
 
-        self.page.add(ft.Text("Hello World!"))
+        connection = self._db.open()
+        root = connection.root
+        self.page.add(ft.Text(root.string))
+        connection.close()
 
         self.page.update()
 
