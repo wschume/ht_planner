@@ -41,8 +41,8 @@ class Application:
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
     application = Application("ht-planner")
-    ft.app(target=application.main)
-    # ft.app(target=application.main, view=ft.WEB_BROWSER)
+    # ft.app(target=application.main)
+    ft.app(target=application.main, view=ft.WEB_BROWSER)
 
 
 if __name__ == "__main__":
