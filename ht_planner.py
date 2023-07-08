@@ -28,6 +28,7 @@ class Application:
         root = connection.root
         self.page.add(ft.Text(root.string))
         connection.close()
+        self.page.add(ft.ElevatedButton("Click me!"))
 
         self.page.update()
 
